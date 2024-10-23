@@ -1,9 +1,10 @@
+import sys
 from pwn import *
 
 #context.log_level="debug"
 
-host="127.0.0.1"
-port=8888
+host=sys.argv[1]
+port=int(sys.argv[2])
 
 r=remote(host,port)
 
