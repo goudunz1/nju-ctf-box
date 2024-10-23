@@ -1,7 +1,5 @@
 # NJUCTF 动态容器样题
 
----
-
 ## 关于本样题
 
 如果你知道如何布题请直接看下一节
@@ -26,8 +24,6 @@
 所以我使用了自己 patch 的 [镜像](https://github.com/goudunz1/xinetd)，
 详情见 [issue47](https://github.com/openSUSE/xinetd/issues/47)
 
----
-
 ## 如何在 GZCTF 上制作动态容器题
 
 我们的机器 `114.212.190.11` 不出网，所以相比寻常的题目部署要麻烦一些
@@ -38,6 +34,12 @@
 
 请首先把制作好的容器上传到这个注册表
 
+为了防止冲突，建议的 tag 为 `[your_name]/[challenge]:[ver]`
+或者 `[category]/[challenge]:[var]`
+
+以前者为例：
+
+
 ```sh
 docker login 'http://114.212.190.11:5000' -u admin
 docker tag '[your_name]/[challenge]:[ver]' '114.212.190.11:5000/[your_name]/[challenge]:[ver]'
@@ -47,12 +49,12 @@ docker push '114.212.190.11:5000/[your_name]/[challenge]:[ver]' --platform=linux
 接下来，在 GZCTF 中写明容器为 `[your_name]/[challenge]:[ver]` 就可以了，
 无需添加 `114.212.190.11:5000` 作为前缀
 
-样题的镜像 (goudunz1/sample:latest) 已导出在 `sample.tar`，
-作为基础镜像的 xinetd (goudunz1/xinetd:alpine) 导出在 `xinetd.tar`
-
 注意别忘了填题目暴露的端口号！（默认是 80）
 
 **PS:** 本机器还提供 scp 上传镜像 tar 的办法，请登录机器后台查看 `/README`
+
+样题的镜像 (goudunz1/sample:latest) 已导出在 `sample.tar`，
+作为基础镜像的 xinetd (goudunz1/xinetd:alpine) 导出在 `xinetd.tar`
 
 **关于动态容器:**
 
@@ -63,33 +65,27 @@ GZCTF 实现动态 flag 的方式是将做好的动态 flag 以环境变量 `GZC
 请将这个环境变量的值当作 flag，
 具体的方法请参照样题的 `src/init.sh`
 
-**flag 模板规则:**（GZCTF 页面中也有）
+**flag 模板规则:**（来自 GZCTF 文档）
 
-```md
-请输入 flag 模版字符串，留空以生成随机 GUID 作为 flag
-
-指定 [GUID]则会仅替换此处的占位符为随机 GUID
-
-若指定 [TEAM_HASH] 则它将会被自动替换为队伍 Token 和比赛信息所生成的哈希值
-
-若未指定 [TEAM_HASH] 则将启用 Leet 字符串功能，将会基于模版对花括号内字符串进行变换，需要确保 flag 模版字符串的熵足够高
-
-若需要在指定 [TEAM_HASH] 的情况下启用 Leet 字符串功能，请在 flag 模版字符串 之前 添加 [LEET] 标记，此时不会检查 flag 模版字符串的熵
-
-如果需要在 flag 生成中启用特殊字符，请在字符串开头用 [CLEET] 代替 [LEET]，这可能造成对于题目的注入问题
+1. 请输入 flag 模版字符串，留空以生成随机 GUID 作为 flag
+2. 指定 [GUID]则会仅替换此处的占位符为随机 GUID
+3. 若指定 [TEAM_HASH] 则它将会被自动替换为队伍 Token 和比赛信息所生成的哈希值
+4. 若未指定 [TEAM_HASH] 则将启用 Leet 字符串功能，将会基于模版对花括号内字符串进行变换，需要确保 flag 模版字符串的熵足够高
+5. 若需要在指定 [TEAM_HASH] 的情况下启用 Leet 字符串功能，请在 flag 模版字符串 之前 添加 [LEET] 标记，此时不会检查 flag 模版字符串的熵
+6. 如果需要在 flag 生成中启用特殊字符，请在字符串开头用 [CLEET] 代替 [LEET]，这可能造成对于题目的注入问题
 
 flag 模板编写示例
-
-    留空 将会生成 flag{1bab71b8-117f-4dea-a047-340b72101d7b}
-    flag{hello world} 将会生成 flag{He1lo_w0r1d}
-    [CLEET]flag{hello sara} 将会生成 flag{He1!o_$@rA}
-    flag{hello_world_[TEAM_HASH]} 将会生成 flag{hello_world_5418ce4d815c}
-    [LEET]flag{hello world [TEAM_HASH]} 将会生成 flag{He1lo_w0r1d_5418ce4d815c}
-```
+  - 留空 将会生成 `flag{1bab71b8-117f-4dea-a047-340b72101d7b}`
+  - `flag{hello world}` 将会生成 `flag{He1lo_w0r1d}`
+  - `[CLEET]flag{hello sara}` 将会生成 `flag{He1!o_$@rA}`
+  - `flag{hello_world_[TEAM_HASH]}` 将会生成 `flag{hello_world_5418ce4d815c}`
+  - `[LEET]flag{hello world [TEAM_HASH]}` 将会生成 `flag{He1lo_w0r1d_5418ce4d815c}`
 
 ---
 
 祝各位师傅玩得开心！
+
+如果有其它需求可以查看机器后台 `/README` 中的说明
 
 by 狗敦子
 
