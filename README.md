@@ -81,6 +81,12 @@ flag 模板编写示例
   - `flag{hello_world_[TEAM_HASH]}` 将会生成 `flag{hello_world_5418ce4d815c}`
   - `[LEET]flag{hello world [TEAM_HASH]}` 将会生成 `flag{He1lo_w0r1d_5418ce4d815c}`
 
+本题的 flag 举例
+
+`[LEET]tnt{This is why ecb is so insecure [TEAM_HASH]}`
+
+`tnt{7HI5_IS_WHY_Ecb_i5_5O_ins3cUrE_69e75b30796f}`
+
 ---
 
 祝各位师傅玩得开心！
