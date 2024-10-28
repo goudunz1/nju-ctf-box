@@ -2,7 +2,7 @@
 
 ## 关于本样题
 
-如果你知道如何布题请直接看下一节
+如果您知道如何布题请直接看下一节
 
 本样题使用 xinetd 代理了 python 程序于 8888 端口，其容器基于 Alpine Linux
 
@@ -42,13 +42,16 @@ docker build src -t goudunz1:sample
 
 请首先把制作好的容器上传到这个注册表
 
+由于这是内网机器，第一次上传时请为我们的SSL证书 `trinity.crt` 添加信任，
+如何添加信任取决于您的操作系统
+
 为了防止冲突，建议的 tag 为 `[your_name]/[challenge]:[ver]`
 或者 `[category]/[challenge]:[var]`
 
 以前者为例：
 
 ```sh
-docker login 'http://114.212.190.11:5000' -u admin
+docker login 'https://114.212.190.11:5000' -u admin
 docker tag '[your_name]/[challenge]:[ver]' '114.212.190.11:5000/[your_name]/[challenge]:[ver]'
 docker push '114.212.190.11:5000/[your_name]/[challenge]:[ver]' --platform=linux/amd64
 ```
@@ -62,7 +65,7 @@ docker push '114.212.190.11:5000/[your_name]/[challenge]:[ver]' --platform=linux
 
 **关于动态容器:**
 
-如果题目是静态容器，那么已经可以了，如果你想布置动态 flag，
+如果题目是静态容器，那么已经可以了，如果您想布置动态 flag，
 请在 flag 页面按照需求填写 flag 模板
 
 GZCTF 实现动态 flag 的方式是将做好的动态 flag 以环境变量 `GZCTF_FLAG` 注入到容器中，
