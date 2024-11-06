@@ -24,15 +24,15 @@
 所以我使用了自己 patch 的 [镜像](https://github.com/goudunz1/xinetd)，
 详情见 [issue47](https://github.com/openSUSE/xinetd/issues/47)
 
-以样题举例，首先构建基础镜像(goudunz1:xinetd:alpine)，
-然后构建题目(goudunz1:sample)：
+以样题举例，首先构建基础镜像(goudunz1/xinetd:alpine)，
+然后构建题目(goudunz1/sample)：
 
 ```sh
-docker build -f xinetd.Dockerfile . -t goudunz1:xinetd:alpine
-docker build src -t goudunz1:sample
+docker build -f xinetd.Dockerfile . -t goudunz1/xinetd:alpine
+docker build src -t goudunz1/sample
 ```
 
-## 如何在 GZCTF 上制作动态容器题
+## 如何在校内靶机上制作动态容器题
 
 我们的机器 `114.212.190.11` 不出网，所以相比寻常的题目部署要麻烦一些
 
