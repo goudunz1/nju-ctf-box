@@ -9,7 +9,7 @@
 容器配置、xinetd 配置、python 源码均位于 `src` 下，本题的解位于 `solve.py`
 
 **关于如何编写自己的题目**:
-- web 题，打包 web 服务在容器中，无需 xinetd
+- web 题，打包 web 服务在容器中，你懂的
 - pwn 题和 crypto 题，按照 cli 程序编写然后交给 xinetd 绑定输入输出在端口上
 
 `src/init.sh` 用于 xinetd 启动题目，需要将其最后一行改为自己的程序
@@ -46,7 +46,7 @@ docker build src -t goudunz1/sample
 如何添加信任取决于您的操作系统
 
 为了防止冲突，建议的 tag 为 `[your_name]/[challenge]:[ver]`
-或者 `[category]/[challenge]:[var]`
+或者 `[category]/[challenge]:[ver]`
 
 以前者为例：
 
@@ -59,7 +59,8 @@ docker push '114.212.190.11:5000/[your_name]/[challenge]:[ver]' --platform=linux
 接下来，在 GZCTF 中写明容器为 `[your_name]/[challenge]:[ver]` 就可以了，
 无需添加 `114.212.190.11:5000` 作为前缀
 
-注意别忘了填题目暴露的端口号！（默认是 80）
+在 GZCTF 发布题目之前，别忘了填您的服务开放的端口号！
+（默认是 80，例如本题应改为 8888）
 
 **PS:** 本机器还提供 scp 上传镜像 tar 的办法，请登录机器后台查看 `/README`
 
