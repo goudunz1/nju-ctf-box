@@ -51,7 +51,7 @@ docker build src -t goudunz1/sample
 以前者为例：
 
 ```sh
-docker login 'https://114.212.190.11:5000' -u admin
+docker login 'https://114.212.190.11:5000' -u [username]
 docker tag '[your_name]/[challenge]:[ver]' '114.212.190.11:5000/[your_name]/[challenge]:[ver]'
 docker push '114.212.190.11:5000/[your_name]/[challenge]:[ver]' --platform=linux/amd64
 ```
