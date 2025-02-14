@@ -1,4 +1,4 @@
-FROM alpine:latest AS builder
+FROM alpine:3.18 AS builder
 
 #ARG XINETD_VERSION=2.3.15.4
 
@@ -13,4 +13,4 @@ FROM alpine:latest
 COPY --from=builder /xinetd/xinetd /usr/sbin
 RUN mkdir -p /etc/xinetd.d/
 
-#CMD ["sleep", "infinity"]
+CMD ["sleep", "infinity"]
